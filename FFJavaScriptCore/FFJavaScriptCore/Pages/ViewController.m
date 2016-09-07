@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "FFJSObject.h"
+#import "FFPerson.h"
 
 @interface ViewController ()
 
@@ -19,7 +20,18 @@
     [super viewDidLoad];
 
     JSContext *context = [[JSContext alloc] init];
+    context.exceptionHandler = ^(JSContext *con, JSValue *exception) {
+        NSLog(@"%@", exception);
+        con.exception = exception;
+    };
     
+    context[@"log"] = ^() {
+        NSArray *args = [JSContext currentArguments];
+        for (id obj in args) {
+            NSLog(@"%@",obj);
+        }
+    };
+        
     /************************************************************************/
     //js调用iOS
     //第一种情况
@@ -110,10 +122,50 @@
     
     
     /************************************************************************/
+    //异常处理
+    context.exceptionHandler = ^(JSContext *con, JSValue *exception) {
+        NSLog(@"%@", exception);
+        con.exception = exception;
+    };
+    [context evaluateScript:@"ider.zheng = 21"];
+    
+    //使用Block的注意事项
+    //在Block内都不要直接使用其外部定义的JSContext对象或者JSValue，应该将其当做参数传入到Block中，
+    //或者通过JSContext的类方法+ (JSContext *)currentContext;来获得。否则会造成循环引用使得内存无法被正确释放。
     
     /************************************************************************/
+    //所有的对象其实可以视为一组键值对的集合，
+    //所以JavaScript中的对象可以返回到Objective-C中当做NSDictionary类型进行访问。
+    JSValue *obj =[context evaluateScript:@"var jsObj = { number:7, name:'Ider' }; jsObj"];
+    NSLog(@"%@, %@", obj[@"name"], obj[@"number"]);
+    NSDictionary *dic = [obj toDictionary];
+    NSLog(@"%@, %@", dic[@"name"], dic[@"number"]);
     
+    //同样的，NSDicionary和NSMutableDictionary传入到JSContext之后也可以直接当对象来调用:
+    NSDictionary *dic2 = @{@"name": @"Ider", @"#":@(21)};
+    context[@"dic"] = dic2;
+    [context evaluateScript:@"log(dic.name, dic['#'])"];
     /************************************************************************/
+    
+    FFPerson *person = [[FFPerson alloc] init];
+    context[@"p"] = person;
+    person.firstName = @"Ider";
+    person.lastName = @"Zheng";
+    person.urls = @{@"site": @"http://www.iderzheng.com"};
+    
+    // ok to get fullName
+    [context evaluateScript:@"log(p.fullName());"];
+    // cannot access firstName
+    [context evaluateScript:@"log(p.firstName);"];
+    // ok to access dictionary as object
+    [context evaluateScript:@"log('site:', p.urls.site, 'blog:', p.urls.blog);"];
+    // ok to change urls property
+    [context evaluateScript:@"p.urls = {blog:'http://blog.iderzheng.com'}"];
+    [context evaluateScript:@"log('-------AFTER CHANGE URLS-------')"];
+    [context evaluateScript:@"log('site:', p.urls.site, 'blog:', p.urls.blog);"];
+    
+    // affect on Objective-C side as well
+    NSLog(@"%@", person.urls);
 }
 
 

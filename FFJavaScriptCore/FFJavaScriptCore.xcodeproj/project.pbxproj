@@ -15,6 +15,7 @@
 		36EF37051D7FCC7E0065AAF1 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36EF37041D7FCC7E0065AAF1 /* JavaScriptCore.framework */; };
 		36EF370F1D7FDB1B0065AAF1 /* FFJSObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 36EF370C1D7FDB1B0065AAF1 /* FFJSObject.m */; };
 		36EF37101D7FDB1B0065AAF1 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36EF370E1D7FDB1B0065AAF1 /* ViewController.m */; };
+		36EF37131D7FF35D0065AAF1 /* FFPerson.m in Sources */ = {isa = PBXBuildFile; fileRef = 36EF37121D7FF35D0065AAF1 /* FFPerson.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +53,8 @@
 		36EF370C1D7FDB1B0065AAF1 /* FFJSObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFJSObject.m; sourceTree = "<group>"; };
 		36EF370D1D7FDB1B0065AAF1 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		36EF370E1D7FDB1B0065AAF1 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		36EF37111D7FF35D0065AAF1 /* FFPerson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFPerson.h; sourceTree = "<group>"; };
+		36EF37121D7FF35D0065AAF1 /* FFPerson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFPerson.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,6 +146,8 @@
 		36EF370A1D7FDB1B0065AAF1 /* Pages */ = {
 			isa = PBXGroup;
 			children = (
+				36EF37111D7FF35D0065AAF1 /* FFPerson.h */,
+				36EF37121D7FF35D0065AAF1 /* FFPerson.m */,
 				36EF370B1D7FDB1B0065AAF1 /* FFJSObject.h */,
 				36EF370C1D7FDB1B0065AAF1 /* FFJSObject.m */,
 				36EF370D1D7FDB1B0065AAF1 /* ViewController.h */,
@@ -279,6 +284,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				36EF37131D7FF35D0065AAF1 /* FFPerson.m in Sources */,
 				36EF36D61D7FCC660065AAF1 /* AppDelegate.m in Sources */,
 				36EF36D31D7FCC660065AAF1 /* main.m in Sources */,
 				36EF37101D7FDB1B0065AAF1 /* ViewController.m in Sources */,
@@ -487,6 +493,7 @@
 				36EF36FD1D7FCC660065AAF1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		36EF36FE1D7FCC660065AAF1 /* Build configuration list for PBXNativeTarget "FFJavaScriptCoreTests" */ = {
 			isa = XCConfigurationList;
@@ -495,6 +502,7 @@
 				36EF37001D7FCC660065AAF1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		36EF37011D7FCC660065AAF1 /* Build configuration list for PBXNativeTarget "FFJavaScriptCoreUITests" */ = {
 			isa = XCConfigurationList;
@@ -503,6 +511,7 @@
 				36EF37031D7FCC660065AAF1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

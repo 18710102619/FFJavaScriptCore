@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import <JavaScriptCore/JavaScriptCore.h>
 
+//语言穿梭机————JSExport协议
+
 //首先创建一个实现了JSExport协议的协议
 @protocol JSObjectProtocol <JSExport>
 
